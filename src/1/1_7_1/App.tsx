@@ -16,24 +16,41 @@ export type Person = {
   imageId: string;
 }
 
+function Card ({person}){
+    return(
+    <li key={person.id}>
+    <img
+        src={getImageUrl(person)}
+        alt={person.name}
+    />
+    <p>
+        <b>{person.name}:</b>
+        {' ' + person.profession + ' '}
+        known for {person.accomplishment}
+    </p>
+</li>)
+}
+
 export default function List() {
-    const listItems = people.map((person) => (
-        <li key={person.id}>
-            <img
-                src={getImageUrl(person)}
-                alt={person.name}
-            />
-            <p>
-                <b>{person.name}:</b>
-                {' ' + person.profession + ' '}
-                known for {person.accomplishment}
-            </p>
-        </li>
+    const chemist = people.filter(
+        (person) =>person.profession === "chemist"
+    )
+    const notChemist = people.filter(
+        (person) => person.profession !== "chemist"
+    )
+    const chemistAll = chemist.map((person) =>
+        Card({person})
+    );
+    
+    const listItems = notChemist.map((person) => (
+        Card({person})
     ));
     return (
         <article>
             <h1>Scientists</h1>
+            <ul>{chemistAll}</ul>
             <ul>{listItems}</ul>
+            <ul>{"БУГАГА"}</ul>
         </article>
     );
 }
