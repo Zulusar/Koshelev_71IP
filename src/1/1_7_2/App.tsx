@@ -3,12 +3,21 @@
   Создайте список рецептов из этого массива! Для каждого рецепта в массиве выведите его название в виде <h2> и список ингредиентов в виде <ul>. Это потребует вложения двух различных вызовов map.
 */
 
+import { Fragment } from 'react/jsx-runtime';
 import { recipes } from './data';
+
+const recipesList = recipes.map((recipes) => (
+    <Fragment key = {recipes.id}>
+        <h2>{recipes.name}</h2>
+        <ul>{recipes.ingredients.join()}</ul>
+    </Fragment>
+    ))
 
 export default function RecipeList() {
     return (
         <div>
             <h1>Recipes</h1>
+            {recipesList}
         </div>
     );
 }

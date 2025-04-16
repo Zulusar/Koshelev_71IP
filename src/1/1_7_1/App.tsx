@@ -50,7 +50,6 @@ export default function List() {
             <h1>Scientists</h1>
             <ul>{chemistAll}</ul>
             <ul>{listItems}</ul>
-            <ul>{"БУГАГА"}</ul>
         </article>
     );
 }
