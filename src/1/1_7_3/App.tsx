@@ -3,30 +3,28 @@
   Этот компонент RecipeList содержит два вложенных вызова map. Чтобы упростить его, извлеките из него компонент Recipe, который будет принимать пропсы id, name и ingredients. Где вы разместите внешний key и почему?.
 */
 
-import { Fragment } from 'react/jsx-runtime';
-import { recipes } from './data';
+import { recipes } from './data.js';
 
-const recipe = recipes.map((recipe) => (
-    <Fragment key = {recipe.id}>
-    <h2>{recipe.name}</h2>
-        <ul>
-            {recipe.ingredients.map(
-                (ingredient) => (
-                    <li key={ingredient}>
-                        {ingredient}
-                    </li>
-                )
-            )}
+
+function Recipe(props){
+    return <div>
+        <h2>{props.name}</h2>
+        <ul>{props.ingredients.map((ingredient) => (
+            <li key={ingredient}>
+            {ingredient}
+        </li>
+        ))}
         </ul>
-</Fragment>
-))
-   
-
+    </div>
+}
 export default function RecipeList() {
     return (
         <div>
             <h1>Recipes</h1>
-            {recipe}
+            {recipes.map((recipe) => (
+                <Recipe{...recipe} key = {recipe.id} />
+
+            ))}
         </div>
     );
 }

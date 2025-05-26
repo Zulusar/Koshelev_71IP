@@ -9,7 +9,12 @@ import { recipes } from './data';
 const recipesList = recipes.map((recipes) => (
     <Fragment key = {recipes.id}>
         <h2>{recipes.name}</h2>
-        <ul>{recipes.ingredients.join()}</ul>
+        <ul>{recipes.ingredients.map((ingredient) => (
+        <li key = {ingredient}>
+            {ingredient}
+        </li>)
+    )}
+    </ul>
     </Fragment>
     ))
 
